@@ -19,8 +19,8 @@
 
 #include <FastLED.h>
 
-#define REDPIN   4
-#define GREENPIN 3
+#define REDPIN   3
+#define GREENPIN 4
 #define BLUEPIN  5
 
 void showAnalogRGB( const CRGB& rgb) {
