@@ -19,9 +19,10 @@
 
 #include <FastLED.h>
 
-#define REDPIN   3
-#define GREENPIN 4
-#define BLUEPIN  5
+#define REDPIN      3
+#define GREENPIN    4
+#define BLUEPIN     5
+#define DIAGLEDPIN 15
 
 void showAnalogRGB( const CRGB& rgb) {
   analogWrite(REDPIN,   255-rgb.r );
@@ -39,6 +40,7 @@ void colorBars() {
 void setup() {
     Serial.begin(115200);
     pinMode(13, OUTPUT);
+    pinMode(DIAGLEDPIN, OUTPUT);
     pinMode(REDPIN, OUTPUT);
     pinMode(GREENPIN, OUTPUT);
     pinMode(BLUEPIN, OUTPUT);
@@ -51,6 +53,9 @@ void loop() {
     int sensorValue = analogRead(A0);
     hue = map(sensorValue, 0, 1023, 0, 255);
     showAnalogRGB(CHSV( hue, 255, 255));
-    Serial.println(hue);
-    delay(20);
+    //Serial.println(hue);
+    digitalWrite(DIAGLEDPIN, HIGH);
+    delay(50 + hue/2);
+    digitalWrite(DIAGLEDPIN, LOW);
+    delay(50 + hue/2);
 }
